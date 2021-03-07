@@ -1,9 +1,18 @@
+import React from "react";
 import "./App.css";
+import Container from "./components/Container";
+import Jumbotron from "./components/Jumbotron";
+import Navbar from "./components/Navbar/Navbar";
+import Saved from "./pages/Saved";
 
 function App() {
   return (
     <div className="App">
-      <p>google books search</p>
+      <Navbar />
+      <Container>
+        <Jumbotron />
+        <Saved />
+      </Container>
     </div>
   );
 }
