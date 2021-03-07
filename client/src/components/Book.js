@@ -15,7 +15,6 @@ export default function Book({
   return (
     <div className="row border">
       <div className="col">
-        <p>book card here</p>
         <div className="row">
           <div className="col text-left">
             <h3>{title}</h3>

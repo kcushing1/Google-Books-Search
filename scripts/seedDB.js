@@ -3,9 +3,7 @@ const db = require("../models");
 
 // This file empties the Books collection and inserts the books below
 
-mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/reactreadinglist"
-);
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/googlebooks");
 
 const bookSeed = [
   {
@@ -17,6 +15,16 @@ const bookSeed = [
     link:
       "http://books.google.com/books?id=sazytgAACAAJ&dq=title:The+Hunger+Games&hl=&source=gbs_api",
     title: "The Hunger Games",
+  },
+  {
+    authors: ["David Rogers", "Daniel Keyes"],
+    description:
+      "Oscar-winning film Charly starring Cliff Robertson and Claire Bloom-a mentally challenged man receives an operation that turns him into a genius...and introduces him to heartache.",
+    image:
+      "http://books.google.com/books/content?id=gK98gXR8onwC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    link:
+      "http://books.google.com/books?id=gK98gXR8onwC&dq=flowers+inauthor:keyes&hl=&source=gbs_api",
+    title: "Flowers for Algernon",
   },
 ];
 
