@@ -4,7 +4,7 @@ import NavItem from "./NavItem";
 export default function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-info">
-      <a className="navbar-brand" href="#">
+      <a className="navbar-brand" href="/">
         Google Books
       </a>
       <button
@@ -20,8 +20,8 @@ export default function Navbar() {
       </button>
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav">
-          <NavItem name="Search" href="#" />
-          <NavItem name="Saved" href="#" />
+          <NavItem name="Search" href="search" />
+          <NavItem name="Saved" href="saved" />
         </ul>
       </div>
     </nav>
