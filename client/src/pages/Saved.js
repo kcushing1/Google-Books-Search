@@ -5,7 +5,12 @@ export default function Saved() {
   const [bookList, setBookList] = useState([]);
 
   function handleApiCall(e) {
-    console.log("tbd api button call");
+    console.log("id is", e.target.id);
+    let remove = fetch("/api/books/" + e.target.id, {
+      method: "DELETE",
+    });
+    remove.then((resp) => resp.json()).then((res) => loadBooks());
+    console.log("api button call remove");
   }
 
   function loadBooks() {
@@ -33,6 +38,7 @@ export default function Saved() {
             return (
               <Book
                 key={book._id}
+                id={book._id}
                 title={book.title}
                 author={book.authors}
                 image={book.image}
@@ -40,18 +46,10 @@ export default function Saved() {
                 href={book.link}
                 btntext="Delete"
                 onClick={handleApiCall}
+                btnid={book._id}
               />
             );
           })}
-          <Book
-            title="test title"
-            author="test author"
-            image="https://via.placeholder.com/150"
-            btntext="Delete"
-            description="skjdgnskdjng asjkghjshdf"
-            href="#"
-            onClick={handleApiCall}
-          />
         </div>
       </div>
     </div>

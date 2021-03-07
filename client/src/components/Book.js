@@ -1,6 +1,5 @@
 import React from "react";
 import ApiButton from "../utils/ApiButton";
-import Button from "../utils/Button";
 import ViewButton from "../utils/ViewButton";
 
 export default function Book({
@@ -11,6 +10,7 @@ export default function Book({
   href,
   btntext,
   onClick,
+  btnid,
 }) {
   return (
     <div className="row border">
@@ -18,15 +18,15 @@ export default function Book({
         <div className="row">
           <div className="col text-left">
             <h3>{title}</h3>
-            <p>{author}</p>
+            <p>Written by {author}</p>
           </div>
           <div className="col text-right">
             <ViewButton href={href} />
-            <ApiButton onClick={onClick} text={btntext} />
+            <ApiButton onClick={onClick} text={btntext} btnid={btnid} />
           </div>
         </div>
         <div className="row">
-          <div className="col text-left">
+          <div className="col-4 text-left m-3">
             <img src={image} alt={title} />
           </div>
           <div className="col text-left">
