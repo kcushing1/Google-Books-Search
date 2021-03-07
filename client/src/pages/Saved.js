@@ -1,7 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Book from "../components/Book";
 
 export default function Saved() {
+  const [bookList, setBookList] = useState([]);
+
   function handleApiCall(e) {
     console.log("tbd api button call");
   }
@@ -12,6 +14,7 @@ export default function Saved() {
       .then((resp) => resp.json())
       .then((res) => {
         console.log(res);
+        setBookList(res);
       });
   }
 
@@ -26,6 +29,20 @@ export default function Saved() {
               <p>Saved Books</p>
             </div>
           </div>
+          {bookList.map((book) => {
+            return (
+              <Book
+                key={book._id}
+                title={book.title}
+                author={book.authors}
+                image={book.image}
+                description={book.description}
+                href={book.link}
+                btntext="Delete"
+                onClick={handleApiCall}
+              />
+            );
+          })}
           <Book
             title="test title"
             author="test author"
