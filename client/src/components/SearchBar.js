@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function SearchBar({ inputChange, SearchBtn }) {
+export default function SearchBar({ inputChange, SearchBtn, placeholder }) {
   return (
     <div className="row border text-left mx-3">
       <div className="col">
@@ -11,7 +11,7 @@ export default function SearchBar({ inputChange, SearchBtn }) {
               type="text"
               className="form-control"
               id="search-title"
-              placeholder="Title"
+              placeholder={placeholder}
               onChange={inputChange}
             />
           </div>

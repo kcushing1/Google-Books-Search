@@ -6,6 +6,7 @@ import SearchBar from "../components/SearchBar";
 export default function Search() {
   const [search, setSearch] = useState({
     term: "",
+    placeholder: "Search Book",
   });
   const [bookResponse, setBookResponse] = useState([
     {
@@ -21,9 +22,11 @@ export default function Search() {
 
   function searchBook() {
     let key = env.BOOKS_API_KEY;
-    console.log("search book function");
     if (search.term === "") {
-      console.log("there is no term to search");
+      setSearch({
+        ...search,
+        placeholder: "You forgot to type in a search term, silly goose!",
+      });
     } else {
       const bookTitle = fetch(
         "https://www.googleapis.com/books/v1/volumes?q=" +
@@ -34,14 +37,22 @@ export default function Search() {
       bookTitle
         .then((resp) => resp.json())
         .then((res) => {
+          console.log(res);
           const searchResults = res.items.map((book, index) => {
+            function findImage() {
+              if (!book.volumeInfo.imageLinks) {
+                return "https://via.placeholder.com/150";
+              } else {
+                return book.volumeInfo.imageLinks.thumbnail;
+              }
+            }
+            let thisImage = findImage();
+
             const searched = {
               title: book.volumeInfo.title,
               authors: book.volumeInfo.authors,
               link: book.volumeInfo.infoLink,
-              image:
-                book.volumeInfo.imageLinks.thumbnail ||
-                "https://via.placeholder.com/150",
+              image: thisImage,
               description: book.volumeInfo.description,
               indexId: index,
             };
@@ -49,13 +60,13 @@ export default function Search() {
           });
           setBookResponse(searchResults);
           setPreSearch({ searched: true });
+          setSearch({ term: "", placeholder: "Search Book" });
         });
     }
   }
 
   function handleInputChange(e) {
     setSearch({ ...search, term: e.target.value });
-    console.log(search.term);
   }
 
   function handleSaveBook(e) {
@@ -67,7 +78,11 @@ export default function Search() {
       <div className="col">
         <div className="row ">
           <div className="col">
-            <SearchBar inputChange={handleInputChange} SearchBtn={searchBook} />
+            <SearchBar
+              inputChange={handleInputChange}
+              SearchBtn={searchBook}
+              placeholder={search.placeholder}
+            />
           </div>
         </div>
         <div className="row border m-3 p-4">
