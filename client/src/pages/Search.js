@@ -37,7 +37,6 @@ export default function Search() {
       bookTitle
         .then((resp) => resp.json())
         .then((res) => {
-          console.log(res);
           const searchResults = res.items.map((book, index) => {
             function findImage() {
               if (!book.volumeInfo.imageLinks) {
@@ -88,7 +87,7 @@ export default function Search() {
     saveBook
       .then((resp) => resp.json)
       .then((res) => {
-        console.log("saved book");
+        console.log("Your book has been saved! :)");
       });
   }
 

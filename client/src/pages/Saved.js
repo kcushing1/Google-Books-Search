@@ -5,12 +5,10 @@ export default function Saved() {
   const [bookList, setBookList] = useState([]);
 
   function handleApiCall(e) {
-    console.log("id is", e.target.id);
     let remove = fetch("/api/books/" + e.target.id, {
       method: "DELETE",
     });
     remove.then((resp) => resp.json()).then((res) => loadBooks());
-    console.log("api button call remove");
   }
 
   function loadBooks() {
@@ -18,7 +16,6 @@ export default function Saved() {
     books
       .then((resp) => resp.json())
       .then((res) => {
-        console.log(res);
         setBookList(res);
       });
   }
