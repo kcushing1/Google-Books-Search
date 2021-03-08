@@ -7,6 +7,17 @@ export default function Search() {
   const [search, setSearch] = useState({
     term: "",
   });
+  const [bookResponse, setBookResponse] = useState([
+    {
+      title: "",
+      authors: [],
+      link: "",
+      image: "",
+      description: "",
+      indexId: "",
+    },
+  ]);
+  const [preSearch, setPreSearch] = useState({ searched: false });
 
   function searchBook() {
     let key = env.BOOKS_API_KEY;
@@ -23,8 +34,21 @@ export default function Search() {
       bookTitle
         .then((resp) => resp.json())
         .then((res) => {
-          console.log("woohoo");
-          console.log(res);
+          const searchResults = res.items.map((book, index) => {
+            const searched = {
+              title: book.volumeInfo.title,
+              authors: book.volumeInfo.authors,
+              link: book.volumeInfo.infoLink,
+              image:
+                book.volumeInfo.imageLinks.thumbnail ||
+                "https://via.placeholder.com/150",
+              description: book.volumeInfo.description,
+              indexId: index,
+            };
+            return searched;
+          });
+          setBookResponse(searchResults);
+          setPreSearch({ searched: true });
         });
     }
   }
@@ -53,21 +77,26 @@ export default function Search() {
                 <p>Search Results</p>
               </div>
             </div>
-            <div className="row">
-              <div className="col">
-                <p>api info here</p>
+
+            {preSearch.searched && (
+              <div>
+                {bookResponse.map((book) => {
+                  return (
+                    <Book
+                      key={book.indexId}
+                      title={book.title}
+                      author={book.authors}
+                      image={book.image}
+                      description={book.description}
+                      btntext="Save"
+                      href={book.link}
+                      onClick={handleSaveBook}
+                      btnid={book.indexId}
+                    />
+                  );
+                })}{" "}
               </div>
-            </div>
-            <Book
-              title="test title"
-              author="authors"
-              image="https://via.placeholder.com/150"
-              description="kjsdfhkjlsdbgfksd jdfglsdfgks kjdsfbldsf"
-              btntext="Save"
-              href="#"
-              onClick={handleSaveBook}
-              btnid="12345"
-            />
+            )}
           </div>
         </div>
       </div>
