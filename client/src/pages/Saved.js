@@ -26,7 +26,7 @@ export default function Saved() {
   useEffect(() => loadBooks(), []);
 
   return (
-    <div className="border p-4">
+    <div className="border p-4 mx-3">
       <div className="row">
         <div className="col">
           <div className="row">
