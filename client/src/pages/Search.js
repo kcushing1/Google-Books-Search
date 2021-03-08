@@ -60,7 +60,7 @@ export default function Search() {
           });
           setBookResponse(searchResults);
           setPreSearch({ searched: true });
-          setSearch({ term: "", placeholder: "Search Book" });
+          setSearch({ ...search, placeholder: "Search Book" });
         });
     }
   }
@@ -70,7 +70,26 @@ export default function Search() {
   }
 
   function handleSaveBook(e) {
-    console.log("this is handleSaveBook and id is ", e.target.id);
+    let idx = parseInt(e.target.id);
+    let bookObject = {
+      title: bookResponse[idx].title,
+      authors: bookResponse[idx].authors,
+      description: bookResponse[idx].description,
+      image: bookResponse[idx].image,
+      link: bookResponse[idx].link,
+    };
+    const saveBook = fetch("/api/books/", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(bookObject),
+    });
+    saveBook
+      .then((resp) => resp.json)
+      .then((res) => {
+        console.log("saved book");
+      });
   }
 
   return (
