@@ -22,7 +22,6 @@
   "bugs": {
     "url": "https://github.com/kcushing1/Google-Books-Search/issues"
   },
-  "homepage": "https://github.com/kcushing1/Google-Books-Search#readme",
   "dependencies": {
     "express": "^4.17.1",
     "if-env": "^1.0.4",
