@@ -20,8 +20,8 @@ export default function Navbar() {
       </button>
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav">
-          <NavItem name="Search" href="/search" />
-          <NavItem name="Saved" href="/saved" />
+          <NavItem name="Search" href="search" />
+          <NavItem name="Saved" href="saved" />
         </ul>
       </div>
     </nav>
