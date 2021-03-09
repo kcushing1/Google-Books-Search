@@ -1,7 +1,5 @@
 # Google-Books-Search
 
-https://hw21-google-books-search-2021.herokuapp.com/
-
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Description
@@ -19,7 +17,7 @@ A React app that uses Google Books API to search books, mark some as favorite, a
 
 ## Appearance
 
-![Google Books Search](./public/screenshot.png)
+![Google Books Search](./client/public/demo/react-google-search-demo.gif)
 
 ## Installation
 
